@@ -2,7 +2,6 @@ package com.example.ticketapp.service;
 
 import com.example.ticketapp.model.User;
 import com.example.ticketapp.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,15 +19,13 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("Tentative de connexion pour: " + username); // Debug
-        User user = userRepository.findByUsername(username)
+    public com.example.ticketapp.model.User loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Tentative de connexion pour: " + username);
+        return userRepository.findByUsername(username)
                 .orElseThrow(() -> {
-                    System.out.println("Utilisateur non trouvé: " + username); // Debug
+                    System.out.println("Utilisateur non trouvé: " + username);
                     return new UsernameNotFoundException("Utilisateur non trouvé");
                 });
-        System.out.println("Utilisateur trouvé: " + user.getUsername()); // Debug
-        return user;
     }
 
     public User saveUser(User user) {

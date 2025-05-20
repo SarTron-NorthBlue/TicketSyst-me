@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
             )
-            .csrf().disable();  // Désactive CSRF pour simplifier (à réactiver en production)
+            .csrf(csrf -> csrf.disable());  // Désactive CSRF pour simplifier (à réactiver en production)
 
         return http.build();
     }

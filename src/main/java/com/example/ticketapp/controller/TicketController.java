@@ -2,18 +2,22 @@ package com.example.ticketapp.controller;
 
 import com.example.ticketapp.model.Ticket;
 import com.example.ticketapp.service.TicketService;
+import com.example.ticketapp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/tickets")
 public class TicketController {
 
     private final TicketService ticketService;
+    private final UserService userService;
 
-    public TicketController(TicketService ticketService) {
+    public TicketController(TicketService ticketService, UserService userService) {
         this.ticketService = ticketService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -23,14 +27,17 @@ public class TicketController {
     }
 
     @GetMapping("/new")
-    public String createForm(Model model) {
-        model.addAttribute("ticket", new Ticket());
+    public String createForm(Model model, Principal principal) {
+        Ticket ticket = new Ticket();
+        com.example.ticketapp.model.User user = userService.loadUserByUsername(principal.getName());
+        ticket.setCreatedBy(user);
+        model.addAttribute("ticket", ticket);
         return "tickets/new";
     }
 
     @PostMapping
     public String createTicket(@ModelAttribute Ticket ticket) {
         ticketService.saveTicket(ticket);
-        return "redirect:/tickets";
+        return "redirect:/dashboard";
     }
 }

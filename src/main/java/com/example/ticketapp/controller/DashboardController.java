@@ -1,6 +1,5 @@
 package com.example.ticketapp.controller;
 
-import com.example.ticketapp.model.Ticket;
 import com.example.ticketapp.service.TicketService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,8 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String showDashboard() {
+    public String showDashboard(Model model) {
+        model.addAttribute("tickets", ticketService.getAllTickets());
         return "dashboard";
     }
 }
