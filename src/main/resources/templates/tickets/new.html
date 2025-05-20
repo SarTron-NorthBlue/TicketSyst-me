@@ -43,15 +43,81 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title mb-4">Créer un nouveau ticket</h2>
-                        <form th:action="@{/tickets}" th:object="${ticket}" method="post">
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Titre</label>
-                                <input type="text" class="form-control" id="title" th:field="*{title}" required>
+                        <form th:action="@{/tickets}" th:object="${ticket}" method="post" enctype="multipart/form-data">
+                            <!-- Section Informations client -->
+                            <div class="mb-4">
+                                <h5 class="mb-3">🧾 Informations client</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="clientName" class="form-label">Nom complet*</label>
+                                        <input type="text" class="form-control" id="clientName" th:field="*{clientName}" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="clientEmail" class="form-label">Adresse e-mail*</label>
+                                        <input type="email" class="form-control" id="clientEmail" th:field="*{clientEmail}" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" th:field="*{description}" rows="5" required></textarea>
+
+                            <!-- Section Détails du ticket -->
+                            <div class="mb-4">
+                                <h5 class="mb-3">📝 Détails du ticket</h5>
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Sujet du ticket*</label>
+                                    <input type="text" class="form-control" id="title" th:field="*{title}" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Catégorie*</label>
+                                    <select class="form-select" id="category" th:field="*{category}" required>
+                                        <option value="">Sélectionnez une catégorie</option>
+                                        <option th:each="cat : ${T(com.example.ticketapp.model.Ticket$Category).values()}" 
+                                                th:value="${cat}" 
+                                                th:text="${cat.displayName}"></option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description détaillée*</label>
+                                    <textarea class="form-control" id="description" th:field="*{description}" rows="5" required></textarea>
+                                </div>
                             </div>
+
+                            <!-- Section Options supplémentaires -->
+                            <div class="mb-4">
+                                <h5 class="mb-3">📎 Options supplémentaires</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="priority" class="form-label">Priorité</label>
+                                        <select class="form-select" id="priority" th:field="*{priority}">
+                                            <option th:each="prio : ${T(com.example.ticketapp.model.Ticket$Priority).values()}" 
+                                                    th:value="${prio}" 
+                                                    th:text="${prio.displayName}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Téléphone</label>
+                                        <input type="tel" class="form-control" id="phone" th:field="*{phone}">
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="orderReference" class="form-label">Numéro de commande</label>
+                                        <input type="text" class="form-control" id="orderReference" th:field="*{orderReference}">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="systemInfo" class="form-label">Système/Navigateur</label>
+                                        <input type="text" class="form-control" id="systemInfo" th:field="*{systemInfo}" placeholder="Ex: Windows 11 - Chrome">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="file" class="form-label">Fichier joint</label>
+                                    <input type="file" class="form-control" id="file" name="file">
+                                </div>
+                            </div>
+
                             <div class="d-flex justify-content-end">
                                 <a th:href="@{/dashboard}" class="btn btn-outline-secondary me-2">Annuler</a>
                                 <button type="submit" class="btn btn-primary">Créer le ticket</button>

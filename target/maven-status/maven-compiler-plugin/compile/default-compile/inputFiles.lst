@@ -1,13 +1,12 @@
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\controller\AuthController.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\model\Ticket.java
-C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\controller\HomeController.java
-C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\repository\UserRepository.java
-C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\repository\TicketRepository.java
-C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\controller\DashboardController.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\service\UserService.java
+C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\controller\HomeController.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\config\SecurityConfig.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\TicketAppApplication.java
+C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\repository\UserRepository.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\model\User.java
+C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\repository\TicketRepository.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\service\TicketService.java
 C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\controller\TicketController.java
-C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\config\WebMvcConfig.java
+C:\Users\lou\Documents\CDA\TicketSyst-me\src\main\java\com\example\ticketapp\controller\DashboardController.java

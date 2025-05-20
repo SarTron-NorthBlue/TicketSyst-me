@@ -1,5 +1,4 @@
 com\example\ticketapp\controller\AuthController.class
-WebMvcConfig.class
 com\example\ticketapp\model\Ticket.class
 com\example\ticketapp\controller\DashboardController.class
 com\example\ticketapp\service\TicketService.class

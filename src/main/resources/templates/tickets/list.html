@@ -50,7 +50,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Titre</th>
+                            <th>Client</th>
+                            <th>Sujet</th>
+                            <th>Catégorie</th>
+                            <th>Priorité</th>
                             <th>Statut</th>
                             <th>Créé le</th>
                             <th>Créé par</th>
@@ -59,7 +62,17 @@
                     </thead>
                     <tbody>
                         <tr th:each="ticket : ${tickets}">
+                            <td th:text="${ticket.clientName}"></td>
                             <td th:text="${ticket.title}"></td>
+                            <td>
+                                <span class="badge bg-info" th:text="${ticket.category.displayName}"></span>
+                            </td>
+                            <td>
+                                <span th:classappend="'badge bg-' + ${ticket.priority == T(com.example.ticketapp.model.Ticket.Priority).LOW ? 'secondary' : 
+                                                             ticket.priority == T(com.example.ticketapp.model.Ticket.Priority).MEDIUM ? 'primary' : 
+                                                             ticket.priority == T(com.example.ticketapp.model.Ticket.Priority).HIGH ? 'warning' : 'danger'}"
+                                      th:text="${ticket.priority.displayName}"></span>
+                            </td>
                             <td>
                                 <span class="badge" 
                                       th:classappend="'bg-' + ${ticket.status == T(com.example.ticketapp.model.Ticket.Status).OPEN ? 'primary' : 
