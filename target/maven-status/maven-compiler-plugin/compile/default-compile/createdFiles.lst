@@ -1,3 +1,14 @@
+com\example\ticketapp\controller\AuthController.class
+WebMvcConfig.class
+com\example\ticketapp\model\Ticket.class
+com\example\ticketapp\controller\DashboardController.class
+com\example\ticketapp\service\TicketService.class
+com\example\ticketapp\service\UserService.class
+com\example\ticketapp\controller\TicketController.class
+com\example\ticketapp\repository\TicketRepository.class
 com\example\ticketapp\config\SecurityConfig.class
+com\example\ticketapp\model\User.class
+com\example\ticketapp\repository\UserRepository.class
+com\example\ticketapp\model\Ticket$Status.class
 com\example\ticketapp\controller\HomeController.class
 com\example\ticketapp\TicketAppApplication.class

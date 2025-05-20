@@ -59,6 +59,23 @@
             background-color: #e9ecef;
             color: #6e8efb;
         }
+
+        /* Styles pour les messages de feedback */
+        .alert {
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +91,14 @@
     <!-- Contenu principal -->
     <main class="container my-auto">
         <div class="login-container">
+            <!-- Messages de feedback -->
+            <div th:if="${success}" class="alert alert-success" role="alert">
+                <i class="bi bi-check-circle-fill"></i> <span th:text="${success}"></span>
+            </div>
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> <span th:text="${error}"></span>
+            </div>
+
             <div class="login-header">
                 <div class="login-logo">
                     <i class="bi bi-person-circle"></i>
@@ -83,7 +108,7 @@
             </div>
             
             <!-- Formulaire de connexion -->
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/auth/perform_login}" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Identifiant</label>
                     <div class="input-group">
@@ -116,7 +141,7 @@
                 
                 <div class="text-center mt-4">
                     <p class="text-muted">Pas encore de compte ? 
-                        <a href="#" class="text-decoration-none fw-bold">S'inscrire</a>
+                        <a th:href="@{/auth/register}" class="text-decoration-none fw-bold">S'inscrire</a>
                     </p>
                 </div>
             </form>
