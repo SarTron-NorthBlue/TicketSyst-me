@@ -76,15 +76,21 @@
                             <td>
                                 <span class="badge" 
                                       th:classappend="'bg-' + ${ticket.status == T(com.example.ticketapp.model.Ticket.Status).OPEN ? 'primary' : 
-                                                               ticket.status == T(com.example.ticketapp.model.Ticket.Status).IN_PROGRESS ? 'warning' : 'success'}"
-                                      th:text="${ticket.status}"></span>
+                                                               ticket.status == T(com.example.ticketapp.model.Ticket.Status).IN_PROGRESS ? 'warning' : 
+                                                               ticket.status == T(com.example.ticketapp.model.Ticket.Status).RESOLVED ? 'success' : 'secondary'}"
+                                      th:text="${ticket.status.displayName}"></span>
                             </td>
                             <td th:text="${#temporals.format(ticket.createdAt, 'dd/MM/yyyy')}"></td>
                             <td th:text="${ticket.createdBy.username}"></td>
                             <td>
-                                <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-eye"></i> Voir
-                                </a>
+                                <div class="d-flex gap-2">
+                                    <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-eye"></i> Voir
+                                    </a>
+                                    <a th:href="@{'/tickets/edit/' + ${ticket.id}}" class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-pencil"></i> Éditer
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

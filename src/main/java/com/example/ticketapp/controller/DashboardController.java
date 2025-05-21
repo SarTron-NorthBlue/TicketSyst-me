@@ -16,7 +16,9 @@ public class DashboardController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model) {
+        System.out.println("Récupération des tickets...");
         model.addAttribute("tickets", ticketService.getAllTickets());
+        System.out.println("Nombre de tickets récupérés: " + ticketService.getAllTickets().size());
         return "dashboard";
     }
 }

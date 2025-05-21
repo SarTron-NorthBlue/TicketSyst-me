@@ -4,6 +4,7 @@ import com.example.ticketapp.model.Ticket;
 import com.example.ticketapp.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketService {
@@ -27,10 +28,22 @@ public class TicketService {
     }
 
     public Ticket getTicketById(Long id) {
-        return ticketRepository.findById(id).orElse(null);
+        return findById(id)
+                .orElseThrow(() -> new RuntimeException("Ticket non trouvé"));
     }
 
     public void deleteTicket(Long id) {
         ticketRepository.deleteById(id);
+    }
+
+    public void updateTicketStatus(Long id, Ticket.Status status) {
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ticket non trouvé"));
+        ticket.setStatus(status);
+        ticketRepository.save(ticket);
+    }
+
+    public Optional<Ticket> findById(Long id) {
+        return ticketRepository.findById(id);
     }
 }
