@@ -7,20 +7,7 @@ import java.time.LocalDateTime;
 public class Ticket {
 
     public enum Status {
-        OPEN("Ouvert"),
-        IN_PROGRESS("En cours"),
-        RESOLVED("Résolu"),
-        CLOSED("Fermé");
-
-        private final String displayName;
-
-        Status(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
+        OPEN, IN_PROGRESS, RESOLVED, CLOSED
     }
 
     public enum Category {
@@ -81,8 +68,8 @@ public class Ticket {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "created_by_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
     private User createdBy;
 
     // Getters et Setters

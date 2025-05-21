@@ -7,4 +7,5 @@ import java.util.List;
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findByStatus(Ticket.Status status);
     List<Ticket> findByCreatedBy_Id(Long userId);
+    List<Ticket> findByCreatedBy_CompanySlug(String companySlug);
 }

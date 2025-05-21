@@ -20,6 +20,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    private String companyName;
+    private String companySlug; // northblue, etc.
+
     // Getters et Setters
     public Long getId() {
         return id;
@@ -43,6 +46,22 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanySlug() {
+        return companySlug;
+    }
+
+    public void setCompanySlug(String companySlug) {
+        this.companySlug = companySlug;
     }
 
     // Méthodes UserDetails

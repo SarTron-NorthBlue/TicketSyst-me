@@ -46,4 +46,8 @@ public class TicketService {
     public Optional<Ticket> findById(Long id) {
         return ticketRepository.findById(id);
     }
+
+    public List<Ticket> getTicketsByCompany(String companySlug) {
+        return ticketRepository.findByCreatedBy_CompanySlug(companySlug);
+    }
 }

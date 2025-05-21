@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 @RequestMapping("/auth")
@@ -26,13 +27,19 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(User user, RedirectAttributes redirectAttributes) {
+    public String registerUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         try {
+            // Générer un slug à partir du nom de l'entreprise
+            String slug = user.getCompanyName().toLowerCase()
+                            .replaceAll("[^a-z0-9]", "-")
+                            .replaceAll("-+", "-");
+            user.setCompanySlug(slug);
+            
             userService.saveUser(user);
-            redirectAttributes.addFlashAttribute("success", "Compte créé avec succès ! Connectez-vous.");
+            redirectAttributes.addFlashAttribute("success", "Compte créé avec succès !");
             return "redirect:/auth/login";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Erreur lors de la création du compte : " + e.getMessage());
+            redirectAttributes.addFlashAttribute("error", "Erreur: " + e.getMessage());
             return "redirect:/auth/register";
         }
     }
